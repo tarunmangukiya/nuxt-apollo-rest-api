@@ -1,15 +1,22 @@
 <template>
-  <div>
-    <ul>
-      <li v-for="item in results.response.items.data" :key="item.id">
-        {{ item.name }}
-      </li>
-    </ul>
+  <div class="d-flex flex-wrap">
+    <template v-if="results">
+      <div
+        v-for="item in results.response.items.data"
+        :key="item.id"
+        class="m-2"
+      >
+        <div class="p-2 border rounded">
+          <img :src="item.urls.png_128" width="128" />
+        </div>
+      </div>
+    </template>
   </div>
 </template>
 
 <script>
 import gql from 'graphql-tag'
+
 export default {
   apollo: {
     results: {
@@ -35,3 +42,5 @@ export default {
   },
 }
 </script>
+
+<style></style>
