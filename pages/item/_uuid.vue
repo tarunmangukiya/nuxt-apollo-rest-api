@@ -4,6 +4,15 @@
       <img :src="item.response.item.urls.png_256" class="card-img-top" />
       <div class="card-body">
         <h5 class="card-title">{{ item.response.item.name }}</h5>
+        <div>
+          <span
+            v-for="(tag, index) in item.response.item.tags"
+            :key="index"
+            class="badge badge-pills badge-primary mr-1"
+            >{{ tag.name }}</span
+          >
+        </div>
+        <div class="mt-2">Updated on {{ item.response.item.modified_at }}</div>
       </div>
     </div>
   </div>
@@ -28,6 +37,8 @@ export default {
                 slug
                 price
                 urls
+                tags
+                modified_at
               }
             }
           }
