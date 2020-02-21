@@ -12,7 +12,7 @@
             >{{ tag.name }}</span
           >
         </div>
-        <div class="mt-2">Updated on {{ item.response.item.modified_at }}</div>
+        <div class="mt-2">Updated on {{ item.response.item.updated }}</div>
       </div>
     </div>
   </div>
@@ -39,6 +39,7 @@ export default {
                 urls
                 tags
                 modified_at
+                updated @client
               }
             }
           }
