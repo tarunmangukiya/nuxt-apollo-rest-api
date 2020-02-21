@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <h1 v-if="$apollo.queries.results.loading">Loading...</h1>
     <template v-else>
       <div
@@ -21,7 +21,9 @@
           class="m-2"
         >
           <div class="p-2 border rounded">
-            <img :src="item.urls.png_128" width="128" />
+            <nuxt-link :to="{ name: 'item-uuid', params: { uuid: item.uuid } }">
+              <img :src="item.urls.png_128" width="128" />
+            </nuxt-link>
           </div>
         </div>
       </div>
@@ -48,6 +50,7 @@ export default {
                 per_page
                 data @type(name: "Item") {
                   id
+                  uuid
                   name
                   slug
                   price
