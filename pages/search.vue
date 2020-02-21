@@ -30,8 +30,9 @@ export default {
   apollo: {
     results: {
       query: gql`
-        query results {
-          results @rest(type: "APIPayload", path: "v2/items") {
+        query results($page: Int) {
+          results(page: $page)
+            @rest(type: "APIPayload", path: "v2/items?{args}") {
             status
             response @type(name: "ResponsePayload") {
               items @type(name: "Pagination") {
@@ -51,6 +52,11 @@ export default {
           }
         }
       `,
+      variables() {
+        return {
+          page: this.$route.query.page || 1,
+        }
+      },
     },
   },
 
