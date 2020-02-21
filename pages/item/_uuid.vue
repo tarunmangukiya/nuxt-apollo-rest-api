@@ -1,5 +1,5 @@
 <template>
-  <div v-if="!$apollo.queries.item.loading" class="container">
+  <div v-if="!$apollo.queries.item.loading && item" class="container">
     <div class="card" style="width: 18rem;">
       <img :src="item.response.item.urls.png_256" class="card-img-top" />
       <div class="card-body">
@@ -24,6 +24,7 @@ import gql from 'graphql-tag'
 export default {
   apollo: {
     item: {
+      // pollInterval: 1000,
       query: gql`
         query item($uuid: String) {
           item(uuid: $uuid)
@@ -49,6 +50,9 @@ export default {
         return {
           uuid: this.$route.params.uuid,
         }
+      },
+      skip() {
+        return !this.$route.params.uuid
       },
     },
   },
